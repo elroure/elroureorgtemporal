@@ -1,3 +1,4 @@
+
 import React from "react";
 
 interface LogoProps {
@@ -12,7 +13,7 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
         className="w-[266px] h-[91px] max-sm:w-[200px] max-sm:h-auto"
         alt="Roure Logo"
       />
-      <div className="text-[#43362A] text-2xl mt-5 max-sm:text-xl">
+      <div className="font-handscript text-[#43362A] text-2xl mt-5 max-sm:text-xl">
         1996 - 2025
       </div>
     </div>
