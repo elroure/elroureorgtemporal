@@ -20,6 +20,12 @@ const MainContent: React.FC = () => {
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
       <div className="relative flex justify-center w-full">
+        <div className="absolute left-0 top-0 w-[300px] max-md:static max-md:w-[90%] max-md:mb-5">
+          <p className="font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+        
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/7d793843044aaa109d1d24be12b99cf118583ded"
           className="w-[649px] h-[642px] max-md:w-[90%] max-md:h-auto"
