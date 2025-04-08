@@ -1,13 +1,34 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "@/components/roure/Logo";
-import MainContent from "@/components/roure/MainContent";
 
 const Index: React.FC = () => {
+  const navigate = useNavigate();
+  const [loadingComplete, setLoadingComplete] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingComplete(true);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleEnter = () => {
+    navigate('/home');
+  };
+
   return (
-    <main className="max-w-none min-h-screen flex flex-col items-center bg-[#DAD3C5] mx-auto p-5 max-md:max-w-[991px] max-sm:max-w-screen-sm font-handscript">
-      <Logo className="mt-10" />
-      <MainContent />
+    <main className="max-w-none min-h-screen flex flex-col items-center justify-center bg-[#DAD3C5] mx-auto p-5">
+      <Logo className="mb-10" />
+      
+      <button
+        onClick={handleEnter}
+        className={`font-handscript text-[#43362A] text-2xl mt-10 hover:underline cursor-pointer transition-opacity duration-1000 ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
+      >
+        entrar
+      </button>
     </main>
   );
 };
