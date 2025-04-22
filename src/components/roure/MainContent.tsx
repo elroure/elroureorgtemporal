@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import RotatedMenu from "./RotatedMenu";
 import TypewriterText from "./TypewriterText";
 
@@ -13,7 +13,11 @@ const menuItems = [
 
 const paragraphText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`;
 
-const MainContent: React.FC = () => {
+export interface MainContentRef {
+  openMenuInstantly: () => void;
+}
+
+const MainContent = forwardRef<MainContentRef, {}>((props, ref) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [loadingStage, setLoadingStage] = useState(0);
 
@@ -32,6 +36,14 @@ const MainContent: React.FC = () => {
     };
   }, []);
 
+  // Used to expose menu opening instantly from outside (menu item back nav)
+  useImperativeHandle(ref, () => ({
+    openMenuInstantly: () => {
+      setLoadingStage(4); // Show everything instantly
+      setMenuVisible(true);
+    }
+  }));
+
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
@@ -39,13 +51,14 @@ const MainContent: React.FC = () => {
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
       <div className="relative flex justify-center w-full">
-        {/* Make Box longer and less wide */}
-        <div className="absolute left-0 top-0 w-[200px] h-[640px] max-md:static max-md:w-[90%] max-md:mb-5 overflow-hidden flex flex-col justify-center">
+        {/* Left text: align higher and remove fade */}
+        <div className="absolute left-0 top-0 w-[200px] h-[642px] max-md:static max-md:w-[90%] max-md:mb-5 overflow-visible flex flex-col justify-start">
           <div
-            className={`font-handscript text-[#43362A] text-xl leading-9 max-md:text-center max-sm:text-lg transition-opacity duration-[8000ms] ${loadingStage >= 2 ? 'opacity-100' : 'opacity-0'}`}
+            className="font-handscript text-[#43362A] text-xl leading-9 max-md:text-center max-sm:text-lg"
             style={{
               clipPath: loadingStage >= 2 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-              transition: 'clip-path 8s ease-in-out'
+              transition: 'clip-path 8s ease-in-out',
+              marginTop: 0
             }}
           >
             {loadingStage >= 2 && (
@@ -53,6 +66,7 @@ const MainContent: React.FC = () => {
             )}
           </div>
         </div>
+        {/* Center image with fade only */}
         <div
           className="relative flex justify-center items-center overflow-hidden"
           style={{
@@ -65,28 +79,28 @@ const MainContent: React.FC = () => {
             className={`w-[649px] h-[642px] max-md:w-[90%] max-md:h-auto transition-opacity duration-[8000ms] ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
             alt="Decorative Pattern"
           />
+          {/* MENÚ button: send to left-bottom of image */}
+          <button
+            onClick={toggleMenu}
+            className="absolute bottom-6 left-6 font-handscript text-[#43362A] text-3xl bg-transparent border-none p-0 focus:outline-none cursor-pointer"
+            style={{
+              clipPath: loadingStage >= 3 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
+              transition: 'clip-path 8s ease-in-out',
+              textDecoration: "none",
+            }}
+          >
+            {loadingStage >= 3 && (
+              <TypewriterText text="MENÚ" delay={140} as="div" />
+            )}
+          </button>
+          {/* Menu items: position higher, over right half of image (vertical align middle or top) */}
+          <RotatedMenu
+            items={menuItems}
+            isVisible={menuVisible}
+            loadingStage={loadingStage >= 3}
+            className="absolute right-0 top-1/4 max-md:static max-md:mt-5"
+          />
         </div>
-        {/* Position menu button where it was before */}
-        <button
-          onClick={toggleMenu}
-          className={`absolute left-0 top-1/2 transform -translate-y-1/2 font-handscript text-[#43362A] text-3xl bg-transparent border-none p-0 focus:outline-none cursor-pointer`}
-          style={{
-            clipPath: loadingStage >= 3 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-            transition: 'clip-path 8s ease-in-out',
-            textDecoration: "none",
-          }}
-        >
-          {loadingStage >= 3 && (
-            <TypewriterText text="MENÚ" delay={140} as="div" />
-          )}
-        </button>
-        {/* Position menu items higher from the center of the image */}
-        <RotatedMenu
-          items={menuItems}
-          isVisible={menuVisible}
-          loadingStage={loadingStage >= 3}
-          className="absolute right-0 top-[200px] max-md:static max-md:mt-5"
-        />
       </div>
       <a
         href="mailto:experienciaelroure@gmail.com"
@@ -99,6 +113,6 @@ const MainContent: React.FC = () => {
       </a>
     </section>
   );
-};
+});
 
 export default MainContent;

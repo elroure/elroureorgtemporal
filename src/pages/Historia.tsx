@@ -17,9 +17,33 @@ const colText2 =
 const Historia: React.FC = () => {
   const navigate = useNavigate();
 
+  // On mount: add popstate handler.
+  React.useEffect(() => {
+    const handlePopState = () => {
+      // Trigger main menu open and skip animations on home page.
+      window.dispatchEvent(new Event("openMainMenuInstantly"));
+      navigate("/home", { replace: true });
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [navigate]);
+
+  const handleMenuClick = () => {
+    // Trigger event that home listens for to open menu instantly and skip animations.
+    window.dispatchEvent(new Event("openMainMenuInstantly"));
+    navigate("/home", { replace: true });
+  };
+
   return (
     <main className="min-h-screen bg-[#DAD3C5] flex flex-col" style={{ fontFamily: "'Satisfy', cursive" }}>
-      <div className="flex flex-row justify-center items-start w-full gap-14 pt-24">
+      <button
+        className="self-center mt-8 text-[#43362A] text-2xl font-handscript bg-transparent border-none p-0 cursor-pointer focus:outline-none"
+        style={{ textDecoration: "none" }}
+        onClick={handleMenuClick}
+      >
+        MENÚ
+      </button>
+      <div className="flex flex-row justify-center items-start w-full gap-14 pt-16">
         <img
           src={FAMILIA_IMG}
           className="w-[480px] max-w-[95vw] h-auto object-cover shadow-sm"
@@ -39,13 +63,6 @@ const Historia: React.FC = () => {
           <div className="italic font-handscript text-2xl text-[#43362A] text-center mt-10 mb-10">{quote}</div>
         </div>
       </div>
-      <button
-        className="ml-24 mt-8 text-[#43362A] text-2xl font-handscript bg-transparent border-none p-0 cursor-pointer focus:outline-none"
-        style={{ textDecoration: "none" }}
-        onClick={() => navigate(-1)}
-      >
-        MENÚ
-      </button>
     </main>
   );
 };
