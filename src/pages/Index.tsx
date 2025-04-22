@@ -25,7 +25,7 @@ const Index: React.FC = () => {
       
       <button
         onClick={handleEnter}
-        className={`font-handscript text-[#43362A] text-2xl mt-10 hover:underline cursor-pointer transition-opacity duration-5000 ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-2xl mt-10 hover:underline cursor-pointer transition-opacity duration-5000 text-center ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
       >
         entrar
       </button>
