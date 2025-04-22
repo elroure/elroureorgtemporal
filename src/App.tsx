@@ -6,7 +6,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
+import Historia from "./pages/Historia";
 import NotFound from "./pages/NotFound";
+
+// (We'd repeat for Pedagogia, Escuela, etc, with similar approach!)
 
 const queryClient = new QueryClient();
 
@@ -19,7 +22,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/home" element={<Home />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/historia" element={<Historia />} />
+          {/* Add similar for /pedagogia etc. */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

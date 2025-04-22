@@ -2,16 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/components/roure/Logo";
+import TypewriterText from "@/components/roure/TypewriterText";
 
 const Index: React.FC = () => {
   const navigate = useNavigate();
   const [loadingComplete, setLoadingComplete] = useState(false);
-  
+
   useEffect(() => {
+    // Slower by x5
     const timer = setTimeout(() => {
       setLoadingComplete(true);
-    }, 7500); // 1500 * 5 = 7500
-    
+    }, 7500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -22,13 +23,24 @@ const Index: React.FC = () => {
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center justify-center bg-[#DAD3C5] mx-auto p-5">
       <Logo className="mb-10" />
-      
-      <button
-        onClick={handleEnter}
-        className={`font-handscript text-[#43362A] text-2xl mt-10 hover:underline cursor-pointer transition-opacity duration-5000 text-center ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
-      >
-        entrar
-      </button>
+      <div className="mt-6 mb-0 flex flex-col items-center w-full">
+        {loadingComplete && (
+          <TypewriterText
+            text="1996 - 2025"
+            className="font-handscript text-[#43362A] text-3xl mb-4 text-center"
+            delay={90}
+            as="div"
+          />
+        )}
+        <button
+          onClick={handleEnter}
+          disabled={!loadingComplete}
+          className={`font-handscript text-[#43362A] text-2xl mt-2 cursor-pointer transition-opacity duration-5000 text-center focus:outline-none bg-transparent border-none p-0`}
+          style={{ textDecoration: "none" }}
+        >
+          {loadingComplete && <TypewriterText text="entrar" delay={92} as="div" />}
+        </button>
+      </div>
     </main>
   );
 };
