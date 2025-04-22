@@ -23,7 +23,7 @@ const Index: React.FC = () => {
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center justify-center bg-[#DAD3C5] mx-auto p-5">
       <Logo className="mb-10" />
-      <div className="mt-6 mb-0 flex flex-col items-center w-full">
+      <div className="mt-6 mb-0 flex flex-col items-center w-full text-center">
         {loadingComplete && (
           <TypewriterText
             text="1996 - 2025"
@@ -35,7 +35,7 @@ const Index: React.FC = () => {
         <button
           onClick={handleEnter}
           disabled={!loadingComplete}
-          className={`font-handscript text-[#43362A] text-2xl mt-2 cursor-pointer transition-opacity duration-5000 text-center focus:outline-none bg-transparent border-none p-0`}
+          className={`font-handscript text-[#43362A] text-2xl mt-2 cursor-pointer text-center focus:outline-none bg-transparent border-none p-0`}
           style={{ textDecoration: "none" }}
         >
           {loadingComplete && <TypewriterText text="entrar" delay={92} as="div" />}

@@ -45,7 +45,7 @@ const MainContent: React.FC = () => {
             className={`font-handscript text-[#43362A] text-xl leading-9 max-md:text-center max-sm:text-lg transition-opacity duration-[8000ms] ${loadingStage >= 2 ? 'opacity-100' : 'opacity-0'}`}
             style={{
               clipPath: loadingStage >= 2 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-              transition: 'clip-path 8s ease-in-out, opacity 8s ease-in-out'
+              transition: 'clip-path 8s ease-in-out'
             }}
           >
             {loadingStage >= 2 && (
@@ -66,13 +66,13 @@ const MainContent: React.FC = () => {
             alt="Decorative Pattern"
           />
         </div>
-        {/* Move menu button higher to top of image/middle */}
+        {/* Position menu button where it was before */}
         <button
           onClick={toggleMenu}
-          className={`absolute left-0 top-1/2 transform -translate-y-1/2 font-handscript text-[#43362A] text-3xl transition-opacity duration-[8000ms] cursor-pointer bg-transparent border-none p-0 focus:outline-none`}
+          className={`absolute left-0 top-1/2 transform -translate-y-1/2 font-handscript text-[#43362A] text-3xl bg-transparent border-none p-0 focus:outline-none cursor-pointer`}
           style={{
             clipPath: loadingStage >= 3 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-            transition: 'clip-path 8s ease-in-out, opacity 8s ease-in-out',
+            transition: 'clip-path 8s ease-in-out',
             textDecoration: "none",
           }}
         >
@@ -80,18 +80,18 @@ const MainContent: React.FC = () => {
             <TypewriterText text="MENÚ" delay={140} as="div" />
           )}
         </button>
-        {/* Menu appears centered vertically from image top/middle */}
+        {/* Position menu items higher from the center of the image */}
         <RotatedMenu
           items={menuItems}
           isVisible={menuVisible}
           loadingStage={loadingStage >= 3}
-          className="absolute right-0 top-[280px] max-md:static max-md:mt-5"
+          className="absolute right-0 top-[200px] max-md:static max-md:mt-5"
         />
       </div>
       <a
         href="mailto:experienciaelroure@gmail.com"
         style={{ textDecoration: "none" }}
-        className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl transition-all duration-[8000ms] mt-10 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl mt-10`}
       >
         {loadingStage >= 4 && (
           <TypewriterText text="experienciaelroure@gmail.com" delay={19} as="div" />
