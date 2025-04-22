@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from "react";
+import TypewriterText from "./TypewriterText";
 
 interface LogoProps {
   className?: string;
