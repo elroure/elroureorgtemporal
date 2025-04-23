@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from "react";
-import TypewriterText from "./TypewriterText";
 
 interface LogoProps {
   className?: string;
@@ -11,12 +10,12 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({ className, animationDelay = 0, showDate = false }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isDateLoaded, setIsDateLoaded] = useState(false);
-
+  
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), animationDelay);
     // Make date load later
-    const dateTimer = setTimeout(() => setIsDateLoaded(true), animationDelay + 2500);
-
+    const dateTimer = setTimeout(() => setIsDateLoaded(true), animationDelay + 2500); // 2500ms later
+    
     return () => {
       clearTimeout(timer);
       clearTimeout(dateTimer);
@@ -37,7 +36,7 @@ const Logo: React.FC<LogoProps> = ({ className, animationDelay = 0, showDate = f
         />
       </div>
       {showDate && (
-        <div
+        <div 
           className="font-handscript text-[#43362A] text-3xl mt-5 max-sm:text-xl text-center"
           style={{
             transition: 'clip-path 8s ease-in-out',
@@ -45,7 +44,7 @@ const Logo: React.FC<LogoProps> = ({ className, animationDelay = 0, showDate = f
           }}
         >
           {isDateLoaded && (
-            <TypewriterText text="1996 - 2025" delay={90} as="div" />
+            <TypewriterText text="1996 - 2025" delay={90} as="div"/>
           )}
         </div>
       )}
