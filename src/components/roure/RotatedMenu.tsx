@@ -26,7 +26,7 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
         <Link
           key={index}
           to={item.href || "#"}
-          className={`block font-handscript text-[#43362A] text-2xl leading-9 rotate-[-15deg] mb-10 max-md:text-center max-sm:text-xl hover:underline transition-opacity duration-1000 opacity-${isVisible ? '100' : '0'}`}
+          className={`block font-handscript text-[#43362A] text-2xl leading-9 rotate-[-15deg] mb-10 max-md:text-center max-sm:text-xl hover:text-opacity-70 transition-opacity duration-1000 opacity-${isVisible ? '100' : '0'}`}
           style={{
             transitionDelay: `${index * 0.5}s`,
             clipPath: isVisible

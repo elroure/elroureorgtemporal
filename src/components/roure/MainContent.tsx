@@ -1,21 +1,20 @@
-
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   { text: "Historia", href: "/historia" },
-  { text: "Pedagogia", href: "/pedagogia" },
+  { text: "Fundamentos", href: "/pedagogia" },
   { text: "Escuela", href: "/escuela" },
-  { text: "Formaciones", href: "/formaciones" },
-  { text: "Textos y videos", href: "/textos-y-videos" },
+  { text: "Formaciones y Asesoramientos", href: "/formaciones" },
+  { text: "Textos y Videos", href: "/textos-y-videos" },
 ];
 
-// Add props for skipping animation and forcing menu open (when returning from inside pages)
 type MainContentProps = {
   skipAnimations?: boolean;
   forceMenuOpen?: boolean;
 };
+
 const MainContent: React.FC<MainContentProps> = ({
   skipAnimations = false,
   forceMenuOpen = false,
@@ -29,7 +28,6 @@ const MainContent: React.FC<MainContentProps> = ({
       setMenuVisible(forceMenuOpen);
       return;
     }
-    // Sequentially load elements with timing - make it 5x slower
     const imageTimer = setTimeout(() => setLoadingStage(1), 1500);
     const textBoxTimer = setTimeout(() => setLoadingStage(2), 5000);
     const menuBtnTimer = setTimeout(() => setLoadingStage(3), 8500);
@@ -41,7 +39,6 @@ const MainContent: React.FC<MainContentProps> = ({
       clearTimeout(menuBtnTimer);
       clearTimeout(emailTimer);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skipAnimations, forceMenuOpen]);
 
   useEffect(() => {
@@ -50,21 +47,16 @@ const MainContent: React.FC<MainContentProps> = ({
 
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
-      {/* Center div to properly align all content */}
       <div className="relative flex flex-row justify-center w-full">
-        {/* Left column with text and menu button */}
         <div className="flex flex-col justify-between z-20 absolute left-0" style={{ minWidth: 250 }}>
           <div className="w-[250px] max-md:w-[90%] mb-5 overflow-hidden">
-            <p
-              className={`font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px]`}
-            >
+            <p className="font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
-          {/* MENU button aligned w/ image bottom */}
           <button
             onClick={() => setMenuVisible((v) => !v)}
-            className={`font-handscript text-[#43362A] text-3xl hover:text-opacity-70 underline transition-all duration-500`}
+            className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-500"
             style={{
               marginTop: "36px"
             }}
@@ -73,7 +65,6 @@ const MainContent: React.FC<MainContentProps> = ({
           </button>
         </div>
         
-        {/* Main image in center */}
         <div
           className="relative flex justify-center items-center overflow-hidden"
           style={{
@@ -88,7 +79,6 @@ const MainContent: React.FC<MainContentProps> = ({
           />
         </div>
         
-        {/* RotatedMenu positioned absolutely on the right side */}
         <div 
           className="absolute z-10 w-[300px] right-0"
           style={{
@@ -106,7 +96,7 @@ const MainContent: React.FC<MainContentProps> = ({
       
       <a
         href="mailto:experienciaelroure@gmail.com"
-        className={`font-handscript text-[#43362A] text-2xl underline max-sm:text-xl hover:text-opacity-80 transition-all duration-5000 mt-10 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl hover:text-opacity-80 transition-all duration-5000 mt-10 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
         style={{
           clipPath: loadingStage >= 4 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
           transition: 'clip-path 6s ease-in-out, opacity 6s ease-in-out'
