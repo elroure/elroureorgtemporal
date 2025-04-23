@@ -48,19 +48,14 @@ const MainContent: React.FC<MainContentProps> = ({
     if (forceMenuOpen) setMenuVisible(true);
   }, [forceMenuOpen]);
 
-  // MENU BTN position: left below long text, aligned with bottom of image
-  // Rotated menu: on the left of image, vertically centered between top/bottom of image, but still left of the image
-  // The left text NO fade/opacity animation
-
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
       <div className="relative flex flex-row justify-center w-full">
-        {/* Text box and MENU btn column */}
-        <div className="flex flex-col justify-between" style={{ minWidth: 250 }}>
+        {/* Left column with text and menu button */}
+        <div className="flex flex-col justify-between z-20" style={{ minWidth: 250 }}>
           <div className="w-[250px] max-md:w-[90%] mb-5 overflow-hidden">
             <p
               className={`font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl bg-white/60 p-4 rounded-[18px] shadow`}
-              // No opacity/fade for left text
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
@@ -76,7 +71,8 @@ const MainContent: React.FC<MainContentProps> = ({
             MENÚ
           </button>
         </div>
-        {/* Main image */}
+        
+        {/* Main image in center */}
         <div
           className="relative flex justify-center items-center overflow-hidden mx-10"
           style={{
@@ -89,25 +85,25 @@ const MainContent: React.FC<MainContentProps> = ({
             className={`w-[649px] h-[642px] max-md:w-[90%] max-md:h-auto transition-opacity duration-5000 ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
             alt="Decorative Pattern"
           />
-          {/* RotatedMenu, left of image & vertically centered */}
-          <div
-            className="absolute"
-            style={{
-              left: "-380px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 10,
-            }}
-          >
-            <RotatedMenu
-              items={menuItems}
-              isVisible={menuVisible}
-              loadingStage={loadingStage >= 3}
-              className=""
-            />
-          </div>
+        </div>
+        
+        {/* RotatedMenu positioned absolutely */}
+        <div 
+          className="absolute z-10 w-[300px]"
+          style={{
+            left: "0px",
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        >
+          <RotatedMenu
+            items={menuItems}
+            isVisible={menuVisible}
+            loadingStage={loadingStage >= 3}
+          />
         </div>
       </div>
+      
       <a
         href="mailto:experienciaelroure@gmail.com"
         className={`font-handscript text-[#43362A] text-2xl underline max-sm:text-xl hover:text-opacity-80 transition-all duration-5000 mt-10 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
