@@ -50,12 +50,13 @@ const MainContent: React.FC<MainContentProps> = ({
 
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
+      {/* Center div to properly align all content */}
       <div className="relative flex flex-row justify-center w-full">
         {/* Left column with text and menu button */}
-        <div className="flex flex-col justify-between z-20" style={{ minWidth: 250 }}>
+        <div className="flex flex-col justify-between z-20 absolute left-0" style={{ minWidth: 250 }}>
           <div className="w-[250px] max-md:w-[90%] mb-5 overflow-hidden">
             <p
-              className={`font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl bg-white/60 p-4 rounded-[18px] shadow`}
+              className={`font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px]`}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
@@ -74,7 +75,7 @@ const MainContent: React.FC<MainContentProps> = ({
         
         {/* Main image in center */}
         <div
-          className="relative flex justify-center items-center overflow-hidden mx-10"
+          className="relative flex justify-center items-center overflow-hidden"
           style={{
             clipPath: loadingStage >= 1 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
             transition: 'clip-path 6s ease-in-out'
@@ -87,11 +88,10 @@ const MainContent: React.FC<MainContentProps> = ({
           />
         </div>
         
-        {/* RotatedMenu positioned absolutely */}
+        {/* RotatedMenu positioned absolutely on the right side */}
         <div 
-          className="absolute z-10 w-[300px]"
+          className="absolute z-10 w-[300px] right-0"
           style={{
-            left: "0px",
             top: "50%",
             transform: "translateY(-50%)",
           }}

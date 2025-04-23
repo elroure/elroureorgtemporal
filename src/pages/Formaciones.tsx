@@ -21,7 +21,7 @@ const Formaciones: React.FC = () => {
           alt="Formaciones"
           className="rounded-lg shadow-md mb-8 object-cover w-full max-h-80"
         />
-        <p className="text-[#43362A] text-2xl leading-9 max-md:text-xl bg-white/60 p-6 rounded-[18px] shadow max-w-full text-center">
+        <p className="text-[#43362A] text-2xl leading-9 max-md:text-xl p-6 rounded-[18px] max-w-full text-center">
           {longText}
         </p>
       </section>
