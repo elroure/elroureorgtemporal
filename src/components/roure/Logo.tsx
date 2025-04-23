@@ -7,15 +7,23 @@ interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({ className, animationDelay = 0 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(() => {
+    // Check if we've already shown the animation
+    return sessionStorage.getItem('logoAnimationPlayed') === 'true';
+  });
   
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), animationDelay);
-    
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [animationDelay]);
+    if (!isLoaded) {
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+        sessionStorage.setItem('logoAnimationPlayed', 'true');
+      }, animationDelay);
+      
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [animationDelay, isLoaded]);
 
   return (
     <div className={`flex flex-col items-center ${className}`}>

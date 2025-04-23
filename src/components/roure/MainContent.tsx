@@ -6,8 +6,8 @@ const menuItems = [
   { text: "Historia", href: "/historia" },
   { text: "Fundamentos", href: "/pedagogia" },
   { text: "Escuela", href: "/escuela" },
-  { text: "Formaciones y Asesoramientos", href: "/formaciones" },
   { text: "Textos y Videos", href: "/textos-y-videos" },
+  { text: "Formaciones y Asesoramientos", href: "/formaciones" },
 ];
 
 type MainContentProps = {
@@ -48,21 +48,12 @@ const MainContent: React.FC<MainContentProps> = ({
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
       <div className="relative flex flex-row justify-center w-full">
-        <div className="flex flex-col justify-between z-20 absolute left-0" style={{ minWidth: 250 }}>
+        <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: 250 }}>
           <div className="w-[250px] max-md:w-[90%] mb-5 overflow-hidden">
             <p className="font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
-          <button
-            onClick={() => setMenuVisible((v) => !v)}
-            className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-500"
-            style={{
-              marginTop: "36px"
-            }}
-          >
-            MENÚ
-          </button>
         </div>
         
         <div
@@ -80,9 +71,10 @@ const MainContent: React.FC<MainContentProps> = ({
         </div>
         
         <div 
-          className="absolute z-10 w-[300px] right-0"
+          className="absolute z-10 w-[300px]"
           style={{
             top: "50%",
+            right: "-5%",
             transform: "translateY(-50%)",
           }}
         >
@@ -93,6 +85,20 @@ const MainContent: React.FC<MainContentProps> = ({
           />
         </div>
       </div>
+      
+      <button
+        onClick={() => setMenuVisible((v) => !v)}
+        className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-500 self-start"
+        style={{
+          marginTop: "36px",
+          marginLeft: "0",
+          position: "absolute",
+          bottom: "0",
+          left: "0"
+        }}
+      >
+        MENÚ
+      </button>
       
       <a
         href="mailto:experienciaelroure@gmail.com"
