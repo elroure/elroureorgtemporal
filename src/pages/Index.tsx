@@ -10,7 +10,7 @@ const Index: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingComplete(true);
-    }, 500);
+    }, 500); // Show entrar button after 0.5s
     
     return () => clearTimeout(timer);
   }, []);
@@ -25,7 +25,7 @@ const Index: React.FC = () => {
       
       <button
         onClick={handleEnter}
-        className={`font-handscript text-[#43362A] text-2xl mt-10 cursor-pointer transition-opacity duration-[10000ms] text-center ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-2xl mt-10 cursor-pointer text-center transition-all duration-[20000ms] ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
       >
         entrar
       </button>
