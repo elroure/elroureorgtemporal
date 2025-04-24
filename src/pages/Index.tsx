@@ -31,3 +31,6 @@ const Index: React.FC = () => {
       </button>
     </main>
   );
+};
+
+export default Index;
