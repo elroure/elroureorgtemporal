@@ -10,7 +10,7 @@ const Index: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoadingComplete(true);
-    }, 2500);
+    }, 500);
     
     return () => clearTimeout(timer);
   }, []);
@@ -21,16 +21,13 @@ const Index: React.FC = () => {
 
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center justify-center bg-[#DAD3C5] mx-auto p-5">
-      <Logo className="mb-10" />
+      <Logo className="mb-10" animationDelay={0} />
       
       <button
         onClick={handleEnter}
-        className={`font-handscript text-[#43362A] text-2xl mt-10 cursor-pointer transition-opacity duration-5000 text-center ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-2xl mt-10 cursor-pointer transition-opacity duration-[10000ms] text-center ${loadingComplete ? 'opacity-100' : 'opacity-0'}`}
       >
         entrar
       </button>
     </main>
   );
-};
-
-export default Index;

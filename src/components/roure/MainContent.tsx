@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 
@@ -30,14 +29,14 @@ const MainContent: React.FC<MainContentProps> = ({
     }
     
     if (sessionStorage.getItem('mainContentAnimationPlayed') !== 'true') {
-      const imageTimer = setTimeout(() => setLoadingStage(1), 500);  // Start earlier
-      const logoTimer = setTimeout(() => setLoadingStage(2), 2000);  // Logo appears next
-      const textBoxTimer = setTimeout(() => setLoadingStage(3), 3500);  // Then text
-      const menuTimer = setTimeout(() => setLoadingStage(4), 5000);  // Then menu
+      const imageTimer = setTimeout(() => setLoadingStage(1), 500);  // Image starts at 500ms
+      const logoTimer = setTimeout(() => setLoadingStage(2), 2000);  // Logo appears after image animation
+      const textBoxTimer = setTimeout(() => setLoadingStage(3), 3500);
+      const menuTimer = setTimeout(() => setLoadingStage(4), 5000);
       const emailTimer = setTimeout(() => {
         setLoadingStage(5);
         sessionStorage.setItem('mainContentAnimationPlayed', 'true');
-      }, 6500);  // Finally email
+      }, 6500);
 
       return () => {
         clearTimeout(imageTimer);

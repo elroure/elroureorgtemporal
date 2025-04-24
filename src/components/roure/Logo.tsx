@@ -8,7 +8,6 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({ className, animationDelay = 0 }) => {
   const [isLoaded, setIsLoaded] = useState(() => {
-    // Check if we've already shown the animation
     return sessionStorage.getItem('logoAnimationPlayed') === 'true';
   });
   
