@@ -30,16 +30,18 @@ const MainContent: React.FC<MainContentProps> = ({
     }
     
     if (sessionStorage.getItem('mainContentAnimationPlayed') !== 'true') {
-      const imageTimer = setTimeout(() => setLoadingStage(1), 1500);
-      const textBoxTimer = setTimeout(() => setLoadingStage(2), 5000);
-      const menuTimer = setTimeout(() => setLoadingStage(3), 8500);
+      const imageTimer = setTimeout(() => setLoadingStage(1), 500);  // Start earlier
+      const logoTimer = setTimeout(() => setLoadingStage(2), 2000);  // Logo appears next
+      const textBoxTimer = setTimeout(() => setLoadingStage(3), 3500);  // Then text
+      const menuTimer = setTimeout(() => setLoadingStage(4), 5000);  // Then menu
       const emailTimer = setTimeout(() => {
-        setLoadingStage(4);
+        setLoadingStage(5);
         sessionStorage.setItem('mainContentAnimationPlayed', 'true');
-      }, 11500);
+      }, 6500);  // Finally email
 
       return () => {
         clearTimeout(imageTimer);
+        clearTimeout(logoTimer);
         clearTimeout(textBoxTimer);
         clearTimeout(menuTimer);
         clearTimeout(emailTimer);
@@ -52,7 +54,13 @@ const MainContent: React.FC<MainContentProps> = ({
       <div className="relative flex flex-row justify-center w-full">
         <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: 250 }}>
           <div className="w-[250px] max-md:w-[90%] mb-5 overflow-hidden">
-            <p className="font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px]">
+            <p 
+              className={`font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'transform 1s ease-out, opacity 1s ease-out'
+              }}
+            >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
@@ -82,18 +90,18 @@ const MainContent: React.FC<MainContentProps> = ({
         >
           <RotatedMenu
             items={menuItems}
-            isVisible={true}
-            loadingStage={loadingStage >= 3}
+            isVisible={loadingStage >= 4}
+            loadingStage={loadingStage >= 4}
           />
         </div>
       </div>
       
       <a
         href="mailto:experienciaelroure@gmail.com"
-        className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl hover:text-opacity-80 transition-all duration-5000 mt-10 no-underline ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl hover:text-opacity-80 transition-all duration-1000 mt-10 no-underline ${loadingStage >= 5 ? 'opacity-100' : 'opacity-0'}`}
         style={{
-          clipPath: loadingStage >= 4 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-          transition: 'clip-path 6s ease-in-out, opacity 6s ease-in-out',
+          transform: loadingStage >= 5 ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'transform 1s ease-out, opacity 1s ease-out'
         }}
       >
         experienciaelroure@gmail.com
