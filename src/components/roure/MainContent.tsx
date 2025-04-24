@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +21,10 @@ const MainContent: React.FC<MainContentProps> = ({
   forceMenuOpen = false,
 }) => {
   const [menuVisible, setMenuVisible] = useState(forceMenuOpen);
-  const [loadingStage, setLoadingStage] = useState(skipAnimations ? 4 : 0);
+  const [loadingStage, setLoadingStage] = useState(() => {
+    // Check if we've already shown the animations
+    return sessionStorage.getItem('mainContentAnimationPlayed') === 'true' ? 4 : (skipAnimations ? 4 : 0);
+  });
 
   useEffect(() => {
     if (skipAnimations) {
@@ -28,17 +32,24 @@ const MainContent: React.FC<MainContentProps> = ({
       setMenuVisible(forceMenuOpen);
       return;
     }
-    const imageTimer = setTimeout(() => setLoadingStage(1), 1500);
-    const textBoxTimer = setTimeout(() => setLoadingStage(2), 5000);
-    const menuBtnTimer = setTimeout(() => setLoadingStage(3), 8500);
-    const emailTimer = setTimeout(() => setLoadingStage(4), 11500);
+    
+    // Only run animations if they haven't been shown before
+    if (sessionStorage.getItem('mainContentAnimationPlayed') !== 'true') {
+      const imageTimer = setTimeout(() => setLoadingStage(1), 1500);
+      const textBoxTimer = setTimeout(() => setLoadingStage(2), 5000);
+      const menuBtnTimer = setTimeout(() => setLoadingStage(3), 8500);
+      const emailTimer = setTimeout(() => {
+        setLoadingStage(4);
+        sessionStorage.setItem('mainContentAnimationPlayed', 'true');
+      }, 11500);
 
-    return () => {
-      clearTimeout(imageTimer);
-      clearTimeout(textBoxTimer);
-      clearTimeout(menuBtnTimer);
-      clearTimeout(emailTimer);
-    };
+      return () => {
+        clearTimeout(imageTimer);
+        clearTimeout(textBoxTimer);
+        clearTimeout(menuBtnTimer);
+        clearTimeout(emailTimer);
+      };
+    }
   }, [skipAnimations, forceMenuOpen]);
 
   useEffect(() => {
@@ -83,29 +94,28 @@ const MainContent: React.FC<MainContentProps> = ({
             isVisible={menuVisible}
             loadingStage={loadingStage >= 3}
           />
+          
+          <button
+            onClick={() => setMenuVisible((v) => !v)}
+            className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-500 self-end mt-4"
+            style={{
+              display: "block",
+              width: "100%",
+              textAlign: "center"
+            }}
+          >
+            MENÚ
+          </button>
         </div>
       </div>
-      
-      <button
-        onClick={() => setMenuVisible((v) => !v)}
-        className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-500 self-start"
-        style={{
-          marginTop: "36px",
-          marginLeft: "0",
-          position: "absolute",
-          bottom: "0",
-          left: "0"
-        }}
-      >
-        MENÚ
-      </button>
       
       <a
         href="mailto:experienciaelroure@gmail.com"
         className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl hover:text-opacity-80 transition-all duration-5000 mt-10 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
         style={{
           clipPath: loadingStage >= 4 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-          transition: 'clip-path 6s ease-in-out, opacity 6s ease-in-out'
+          transition: 'clip-path 6s ease-in-out, opacity 6s ease-in-out',
+          textDecoration: 'none'
         }}
       >
         experienciaelroure@gmail.com

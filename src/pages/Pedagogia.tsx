@@ -21,13 +21,15 @@ const Pedagogia: React.FC = () => {
           alt="Pedagogia"
           className="rounded-lg shadow-md mb-8 object-cover w-full max-h-80"
         />
-        <p className="text-[#43362A] text-2xl leading-9 max-md:text-xl p-6 rounded-[18px] max-w-full text-center">
+        <p className="text-[#43362A] text-2xl leading-9 max-md:text-xl p-6 rounded-[18px] max-w-full text-center"
+           style={{ boxShadow: 'none', backgroundColor: 'transparent' }}>
           {longText}
         </p>
       </section>
       <button
         onClick={handleMenu}
-        className="font-handscript text-[#43362A] text-3xl underline hover:text-opacity-70 transition-all duration-300 mt-20 mb-4"
+        className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-300 mt-20 mb-4"
+        style={{ textDecoration: 'none' }}
       >
         MENÚ
       </button>
