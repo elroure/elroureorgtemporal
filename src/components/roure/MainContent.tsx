@@ -56,13 +56,13 @@ const MainContent: React.FC<MainContentProps> = ({
   }, [loadingStage]);
 
   return (
-    <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
+    <section className="flex flex-col items-center relative w-full max-w-[90vw] 2xl:max-w-[1800px] mt-10">
       <div className={`relative flex ${isMobile ? 'flex-col items-center' : 'flex-row justify-center'} w-full`}>
         {!isMobile && (
-          <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: 250 }}>
-            <div className="w-[250px] mb-5 overflow-hidden">
+          <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: '20%', maxWidth: '400px' }}>
+            <div className="w-full mb-5 overflow-hidden">
               <p 
-                className={`font-handscript text-[#43362A] text-2xl leading-9 p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
+                className={`font-handscript text-[#43362A] text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
                 style={{
                   transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
                   transition: 'transform 1s ease-out, opacity 1s ease-out'
@@ -83,17 +83,19 @@ const MainContent: React.FC<MainContentProps> = ({
         >
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/7d793843044aaa109d1d24be12b99cf118583ded"
-            className={`w-[649px] h-[642px] max-md:w-[90%] max-md:h-auto transition-opacity duration-3000 ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-[40vw] max-w-[800px] min-w-[300px] h-auto transition-opacity duration-3000 ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
             alt="Decorative Pattern"
           />
         </div>
 
         {!isMobile ? (
           <div 
-            className="absolute z-10 w-[300px]"
+            className="absolute z-10"
             style={{
               top: "50%",
-              right: "-5%",
+              right: "0",
+              width: '20%',
+              maxWidth: '400px',
               transform: "translateY(-50%)",
             }}
           >
@@ -110,11 +112,12 @@ const MainContent: React.FC<MainContentProps> = ({
                 items={menuItems}
                 isVisible={loadingStage >= 4 || forceMenuOpen}
                 loadingStage={loadingStage >= 4}
+                isMobile={true}
               />
             </div>
             <div className="w-[90%] mt-8">
               <p 
-                className={`font-handscript text-[#43362A] text-2xl leading-9 text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
+                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
                 style={{
                   transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
                   transition: 'transform 1s ease-out, opacity 1s ease-out'
@@ -129,7 +132,7 @@ const MainContent: React.FC<MainContentProps> = ({
       
       <a
         href="mailto:experienciaelroure@gmail.com"
-        className={`font-handscript text-[#43362A] text-2xl max-sm:text-xl hover:text-opacity-80 transition-all duration-1000 mt-10 ${loadingStage >= 5 ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl hover:text-opacity-80 transition-all duration-1000 mt-10 ${loadingStage >= 5 ? 'opacity-100' : 'opacity-0'}`}
         style={{
           transform: loadingStage >= 5 ? 'translateY(0)' : 'translateY(20px)',
           transition: 'transform 1s ease-out, opacity 1s ease-out',

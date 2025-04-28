@@ -12,6 +12,7 @@ interface RotatedMenuProps {
   className?: string;
   isVisible: boolean;
   loadingStage?: boolean;
+  isMobile?: boolean;
 }
 
 const RotatedMenu: React.FC<RotatedMenuProps> = ({
@@ -19,6 +20,7 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
   className,
   isVisible,
   loadingStage = true,
+  isMobile = false,
 }) => {
   return (
     <nav className={className}>
@@ -26,11 +28,11 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
         <Link
           key={index}
           to={item.href || "#"}
-          className={`block font-handscript text-[#43362A] text-2xl leading-9 rotate-[-15deg] mb-10 max-md:text-center max-sm:text-xl transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70`}
+          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl leading-relaxed mb-6 max-md:text-center transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70`}
           style={{
             transform: isVisible 
-              ? 'rotate(-15deg) translateX(0)' 
-              : 'rotate(-15deg) translateX(-50px)',
+              ? `${!isMobile ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
+              : `${!isMobile ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(-50px)`,
             transitionDelay: `${index * 0.5}s`,
             clipPath: isVisible
               ? "circle(150% at 50% 50%)"
