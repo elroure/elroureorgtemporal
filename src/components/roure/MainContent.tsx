@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const menuItems = [
   { text: "Historia", href: "/historia" },
@@ -19,8 +19,8 @@ const MainContent: React.FC<MainContentProps> = ({
   skipAnimations = false,
   forceMenuOpen = false,
 }) => {
+  const isMobile = useIsMobile();
   const [loadingStage, setLoadingStage] = useState(() => {
-    // Always show animation on first load of the session
     const hasPlayed = sessionStorage.getItem('mainContentAnimationPlayed') === 'true';
     return hasPlayed || skipAnimations ? 5 : 0;
   });
@@ -32,13 +32,6 @@ const MainContent: React.FC<MainContentProps> = ({
     }
     
     if (sessionStorage.getItem('mainContentAnimationPlayed') !== 'true') {
-      // Sequence timing:
-      // 1. Image starts immediately (stage 1)
-      // 2. Logo appears after image animation (stage 2)
-      // 3. Text appears after logo (stage 3)
-      // 4. Menu appears after text (stage 4)
-      // 5. Email appears last (stage 5)
-      
       const imageTimer = setTimeout(() => setLoadingStage(1), 100);  // Image starts immediately
       const logoTimer = setTimeout(() => setLoadingStage(2), 2000);  // Logo appears after image animation
       const textBoxTimer = setTimeout(() => setLoadingStage(3), 3500); // Text appears after logo
@@ -59,26 +52,27 @@ const MainContent: React.FC<MainContentProps> = ({
   }, [skipAnimations]);
 
   useEffect(() => {
-    // Debug for animation stages
     console.log("Current loading stage:", loadingStage);
   }, [loadingStage]);
 
   return (
     <section className="flex flex-col items-center relative w-full max-w-[1200px] mt-10">
-      <div className="relative flex flex-row justify-center w-full">
-        <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: 250 }}>
-          <div className="w-[250px] max-md:w-[90%] mb-5 overflow-hidden">
-            <p 
-              className={`font-handscript text-[#43362A] text-2xl leading-9 max-md:text-center max-sm:text-xl p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
-              style={{
-                transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'transform 1s ease-out, opacity 1s ease-out'
-              }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+      <div className={`relative flex ${isMobile ? 'flex-col items-center' : 'flex-row justify-center'} w-full`}>
+        {!isMobile && (
+          <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: 250 }}>
+            <div className="w-[250px] mb-5 overflow-hidden">
+              <p 
+                className={`font-handscript text-[#43362A] text-2xl leading-9 p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
+                style={{
+                  transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'transform 1s ease-out, opacity 1s ease-out'
+                }}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
           </div>
-        </div>
+        )}
         
         <div
           className="relative flex justify-center items-center overflow-hidden"
@@ -93,21 +87,44 @@ const MainContent: React.FC<MainContentProps> = ({
             alt="Decorative Pattern"
           />
         </div>
-        
-        <div 
-          className="absolute z-10 w-[300px]"
-          style={{
-            top: "50%",
-            right: "-5%",
-            transform: "translateY(-50%)",
-          }}
-        >
-          <RotatedMenu
-            items={menuItems}
-            isVisible={loadingStage >= 4 || forceMenuOpen}
-            loadingStage={loadingStage >= 4}
-          />
-        </div>
+
+        {!isMobile ? (
+          <div 
+            className="absolute z-10 w-[300px]"
+            style={{
+              top: "50%",
+              right: "-5%",
+              transform: "translateY(-50%)",
+            }}
+          >
+            <RotatedMenu
+              items={menuItems}
+              isVisible={loadingStage >= 4 || forceMenuOpen}
+              loadingStage={loadingStage >= 4}
+            />
+          </div>
+        ) : (
+          <>
+            <div className="mt-8 w-full flex justify-center">
+              <RotatedMenu
+                items={menuItems}
+                isVisible={loadingStage >= 4 || forceMenuOpen}
+                loadingStage={loadingStage >= 4}
+              />
+            </div>
+            <div className="w-[90%] mt-8">
+              <p 
+                className={`font-handscript text-[#43362A] text-2xl leading-9 text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
+                style={{
+                  transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'transform 1s ease-out, opacity 1s ease-out'
+                }}
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </>
+        )}
       </div>
       
       <a
