@@ -31,7 +31,7 @@ const Escuela: React.FC = () => {
         className="font-handscript text-[#43362A] text-3xl hover:text-opacity-70 transition-all duration-300 mt-20 mb-4"
         style={{ textDecoration: 'none' }}
       >
-        MENÚ
+        Atrás
       </button>
     </main>
   );

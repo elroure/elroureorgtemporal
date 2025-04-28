@@ -6,8 +6,8 @@ const menuItems = [
   { text: "Historia", href: "/historia" },
   { text: "Fundamentos", href: "/pedagogia" },
   { text: "Escuela", href: "/escuela" },
-  { text: "Textos y Videos", href: "/textos-y-videos" },
   { text: "Formaciones y Asesoramientos", href: "/formaciones" },
+  { text: "Textos y Videos", href: "/textos-y-videos" },
 ];
 
 type MainContentProps = {
