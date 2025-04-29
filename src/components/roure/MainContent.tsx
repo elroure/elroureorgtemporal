@@ -133,14 +133,14 @@ const MainContent: React.FC<MainContentProps> = ({
             <div className="mt-8 w-full flex justify-center">
               <RotatedMenu
                 items={menuItems}
-                isVisible={loadingStage >= 3 || forceMenuOpen} {/* Show in stage 3 instead of 4 */}
+                isVisible={loadingStage >= 3 || forceMenuOpen} // Show in stage 3 instead of 4
                 loadingStage={loadingStage >= 3}
                 isMobile={true}
               />
             </div>
             <div className="w-[90%] mt-8">
               <p 
-                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`} {/* Show in stage 4 instead of 3 */}
+                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`} // Show in stage 4 instead of 3
                 style={{
                   transform: loadingStage >= 4 ? 'translateY(0)' : 'translateY(20px)',
                   transition: 'transform 1s ease-out, opacity 1s ease-out'
