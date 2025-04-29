@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -34,22 +35,43 @@ const MainContent: React.FC<MainContentProps> = ({
     if (sessionStorage.getItem('mainContentAnimationPlayed') !== 'true') {
       const imageTimer = setTimeout(() => setLoadingStage(1), 100);  // Image starts immediately
       const logoTimer = setTimeout(() => setLoadingStage(2), 2000);  // Logo appears after image animation
-      const textBoxTimer = setTimeout(() => setLoadingStage(3), 3500); // Text appears after logo
-      const menuTimer = setTimeout(() => setLoadingStage(4), 5000);  // Menu appears after text
-      const emailTimer = setTimeout(() => {
-        setLoadingStage(5);
-        sessionStorage.setItem('mainContentAnimationPlayed', 'true');
-      }, 6500);  // Email appears last
+      
+      // Different timing sequence based on device type
+      if (isMobile) {
+        // For mobile: menu appears before text
+        const menuTimer = setTimeout(() => setLoadingStage(3), 3500); // Menu appears after logo
+        const textBoxTimer = setTimeout(() => setLoadingStage(4), 5000); // Text appears after menu
+        const emailTimer = setTimeout(() => {
+          setLoadingStage(5);
+          sessionStorage.setItem('mainContentAnimationPlayed', 'true');
+        }, 6500);  // Email appears last
 
-      return () => {
-        clearTimeout(imageTimer);
-        clearTimeout(logoTimer);
-        clearTimeout(textBoxTimer);
-        clearTimeout(menuTimer);
-        clearTimeout(emailTimer);
-      };
+        return () => {
+          clearTimeout(imageTimer);
+          clearTimeout(logoTimer);
+          clearTimeout(menuTimer);
+          clearTimeout(textBoxTimer);
+          clearTimeout(emailTimer);
+        };
+      } else {
+        // For desktop: original sequence (text before menu)
+        const textBoxTimer = setTimeout(() => setLoadingStage(3), 3500); // Text appears after logo
+        const menuTimer = setTimeout(() => setLoadingStage(4), 5000);  // Menu appears after text
+        const emailTimer = setTimeout(() => {
+          setLoadingStage(5);
+          sessionStorage.setItem('mainContentAnimationPlayed', 'true');
+        }, 6500);  // Email appears last
+
+        return () => {
+          clearTimeout(imageTimer);
+          clearTimeout(logoTimer);
+          clearTimeout(textBoxTimer);
+          clearTimeout(menuTimer);
+          clearTimeout(emailTimer);
+        };
+      }
     }
-  }, [skipAnimations]);
+  }, [skipAnimations, isMobile]);
 
   useEffect(() => {
     console.log("Current loading stage:", loadingStage);
@@ -107,19 +129,20 @@ const MainContent: React.FC<MainContentProps> = ({
           </div>
         ) : (
           <>
+            {/* Mobile layout with menu first, then text */}
             <div className="mt-8 w-full flex justify-center">
               <RotatedMenu
                 items={menuItems}
-                isVisible={loadingStage >= 4 || forceMenuOpen}
-                loadingStage={loadingStage >= 4}
+                isVisible={loadingStage >= 3 || forceMenuOpen} {/* Show in stage 3 instead of 4 */}
+                loadingStage={loadingStage >= 3}
                 isMobile={true}
               />
             </div>
             <div className="w-[90%] mt-8">
               <p 
-                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
+                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`} {/* Show in stage 4 instead of 3 */}
                 style={{
-                  transform: loadingStage >= 3 ? 'translateY(0)' : 'translateY(20px)',
+                  transform: loadingStage >= 4 ? 'translateY(0)' : 'translateY(20px)',
                   transition: 'transform 1s ease-out, opacity 1s ease-out'
                 }}
               >
