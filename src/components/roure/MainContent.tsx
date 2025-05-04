@@ -112,7 +112,7 @@ const MainContent: React.FC<MainContentProps> = ({
 
         {!isMobile ? (
           <div 
-            className="absolute z-10"
+            className="absolute z-10 flex justify-center items-center"
             style={{
               top: "50%",
               right: "0",
@@ -155,7 +155,7 @@ const MainContent: React.FC<MainContentProps> = ({
       
       <a
         href="mailto:experienciaelroure@gmail.com"
-        className={`font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl hover:text-opacity-80 transition-all duration-1000 mt-10 ${loadingStage >= 5 ? 'opacity-100' : 'opacity-0'}`}
+        className={`font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl hover:text-opacity-80 transition-all duration-1000 mt-10 ${loadingStage >= 5 ? 'opacity-100' : 'opacity-0'}`}
         style={{
           transform: loadingStage >= 5 ? 'translateY(0)' : 'translateY(20px)',
           transition: 'transform 1s ease-out, opacity 1s ease-out',

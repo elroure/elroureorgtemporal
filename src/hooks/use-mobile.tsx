@@ -1,7 +1,8 @@
 
 import * as React from "react"
 
-const MOBILE_BREAKPOINT = 1024
+// Increase mobile breakpoint to include 1024x1366 resolutions
+const MOBILE_BREAKPOINT = 1366
 
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)

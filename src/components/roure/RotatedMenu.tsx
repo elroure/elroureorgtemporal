@@ -23,12 +23,12 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
   isMobile = false,
 }) => {
   return (
-    <nav className={className}>
+    <nav className={`flex flex-col items-center w-full ${className}`}>
       {items.map((item, index) => (
         <Link
           key={index}
           to={item.href || "#"}
-          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl leading-relaxed mb-6 max-md:text-center transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70`}
+          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-6 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 text-center`}
           style={{
             transform: isVisible 
               ? `${!isMobile ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
