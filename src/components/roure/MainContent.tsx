@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -113,7 +112,7 @@ const MainContent: React.FC<MainContentProps> = ({
 
         {!isMobile ? (
           <div 
-            className="absolute z-10 flex justify-center items-center"
+            className="absolute z-10 flex justify-start items-center"
             style={{
               top: "50%",
               right: "0",

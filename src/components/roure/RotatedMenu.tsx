@@ -24,21 +24,13 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
   isMobile = false,
   isOnRight = false,
 }) => {
-  const getTextAlignment = () => {
-    if (isOnRight) {
-      return "text-left"; // Left-aligned when on the right side
-    } else {
-      return "text-center"; // Center-aligned when below the image
-    }
-  };
-
   return (
-    <nav className={`flex flex-col items-center w-full ${className}`}>
+    <nav className={`flex flex-col ${isMobile || !isOnRight ? 'items-center' : 'items-start'} w-full ${className}`}>
       {items.map((item, index) => (
         <Link
           key={index}
           to={item.href || "#"}
-          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-6 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 ${getTextAlignment()}`}
+          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-6 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 ${isMobile || !isOnRight ? 'text-center' : 'text-left'}`}
           style={{
             transform: isVisible 
               ? `${!isMobile && isOnRight ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
