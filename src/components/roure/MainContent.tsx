@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -81,8 +80,8 @@ const MainContent: React.FC<MainContentProps> = ({
     <section className="flex flex-col items-center relative w-full max-w-[90vw] 2xl:max-w-[1800px] mt-10">
       <div className={`relative flex ${isMobile ? 'flex-col items-center' : 'flex-row justify-center'} w-full`}>
         {!isMobile && (
-          <div className="flex flex-col justify-start z-20 absolute left-0" style={{ minWidth: '20%', maxWidth: '400px' }}>
-            <div className="w-full mb-5 overflow-hidden">
+          <div className="flex flex-col justify-start z-20 absolute left-0 top-0 max-h-full" style={{ minWidth: '20%', maxWidth: '400px' }}>
+            <div className="w-full mb-5 overflow-y-auto">
               <p 
                 className={`font-handscript text-[#43362A] text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 3 ? 'opacity-100' : 'opacity-0'}`}
                 style={{
@@ -97,7 +96,7 @@ const MainContent: React.FC<MainContentProps> = ({
         )}
         
         <div
-          className="relative flex justify-center items-center overflow-hidden"
+          className="relative flex justify-center items-center overflow-hidden mx-auto"
           style={{
             clipPath: loadingStage >= 1 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
             transition: 'clip-path 3s ease-in-out'
@@ -157,8 +156,7 @@ const MainContent: React.FC<MainContentProps> = ({
         href="mailto:experienciaelroure@gmail.com"
         className={`font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl hover:text-opacity-80 transition-all duration-1000 mt-10 ${loadingStage >= 5 ? 'opacity-100' : 'opacity-0'}`}
         style={{
-          transform: loadingStage >= 5 ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'transform 1s ease-out, opacity 1s ease-out',
+          transition: 'opacity 1s ease-out',
           textDecoration: 'none'
         }}
       >
