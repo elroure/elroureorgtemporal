@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -100,7 +101,7 @@ const MainContent: React.FC<MainContentProps> = ({
           style={{
             clipPath: loadingStage >= 1 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
             transition: 'clip-path 3s ease-in-out',
-            transform: 'translateX(-3%)' // Offset logo 3% to the left for visual centering
+            transform: 'translateX(-6%)' // Updated from -3% to -6%
           }}
         >
           <img

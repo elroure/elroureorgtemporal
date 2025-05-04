@@ -30,7 +30,7 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
         <Link
           key={index}
           to={item.href || "#"}
-          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-6 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 ${isMobile || !isOnRight ? 'text-center' : 'text-left'}`}
+          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-4 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 ${isMobile || !isOnRight ? 'text-center' : 'text-left'}`}
           style={{
             transform: isVisible 
               ? `${!isMobile && isOnRight ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
