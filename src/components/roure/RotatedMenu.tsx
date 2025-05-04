@@ -13,6 +13,7 @@ interface RotatedMenuProps {
   isVisible: boolean;
   loadingStage?: boolean;
   isMobile?: boolean;
+  isOnRight?: boolean;
 }
 
 const RotatedMenu: React.FC<RotatedMenuProps> = ({
@@ -21,18 +22,27 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
   isVisible,
   loadingStage = true,
   isMobile = false,
+  isOnRight = false,
 }) => {
+  const getTextAlignment = () => {
+    if (isOnRight) {
+      return "text-left"; // Left-aligned when on the right side
+    } else {
+      return "text-center"; // Center-aligned when below the image
+    }
+  };
+
   return (
     <nav className={`flex flex-col items-center w-full ${className}`}>
       {items.map((item, index) => (
         <Link
           key={index}
           to={item.href || "#"}
-          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-6 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 text-center`}
+          className={`block font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed mb-6 transition-all duration-1000 opacity-${isVisible ? '100' : '0'} hover:text-opacity-70 ${getTextAlignment()}`}
           style={{
             transform: isVisible 
-              ? `${!isMobile ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
-              : `${!isMobile ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(-50px)`,
+              ? `${!isMobile && isOnRight ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
+              : `${!isMobile && isOnRight ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(-50px)`,
             transitionDelay: `${index * 0.5}s`,
             clipPath: isVisible
               ? "circle(150% at 50% 50%)"

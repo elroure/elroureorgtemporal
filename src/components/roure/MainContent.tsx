@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -99,7 +100,8 @@ const MainContent: React.FC<MainContentProps> = ({
           className="relative flex justify-center items-center overflow-hidden mx-auto"
           style={{
             clipPath: loadingStage >= 1 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-            transition: 'clip-path 3s ease-in-out'
+            transition: 'clip-path 3s ease-in-out',
+            transform: 'translateX(-3%)' // Offset logo 3% to the left for visual centering
           }}
         >
           <img
@@ -124,6 +126,7 @@ const MainContent: React.FC<MainContentProps> = ({
               items={menuItems}
               isVisible={loadingStage >= 4 || forceMenuOpen}
               loadingStage={loadingStage >= 4}
+              isOnRight={true}
             />
           </div>
         ) : (
@@ -132,14 +135,15 @@ const MainContent: React.FC<MainContentProps> = ({
             <div className="mt-8 w-full flex justify-center">
               <RotatedMenu
                 items={menuItems}
-                isVisible={loadingStage >= 3 || forceMenuOpen} // Show in stage 3 instead of 4
+                isVisible={loadingStage >= 3 || forceMenuOpen}
                 loadingStage={loadingStage >= 3}
                 isMobile={true}
+                isOnRight={false}
               />
             </div>
             <div className="w-[90%] mt-8">
               <p 
-                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`} // Show in stage 4 instead of 3
+                className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-1000 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
                 style={{
                   transform: loadingStage >= 4 ? 'translateY(0)' : 'translateY(20px)',
                   transition: 'transform 1s ease-out, opacity 1s ease-out'
