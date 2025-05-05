@@ -27,7 +27,7 @@ const Logo: React.FC<LogoProps> = ({ className, animationDelay = 0 }) => {
 
   return (
     <div className={`flex flex-col items-center ${className}`}>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden" style={{ transform: "translateX(-30%)" }}>
         <img
           src="/logo.png"
           className={`w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto transition-all duration-3000`}

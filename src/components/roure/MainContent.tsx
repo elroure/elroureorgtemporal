@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -108,6 +107,9 @@ const MainContent: React.FC<MainContentProps> = ({
             src="/lovable-uploads/a2a0306c-1588-4029-bd68-eadc52824cbe.png"
             className={`w-[40vw] max-w-[800px] min-w-[300px] h-auto transition-opacity duration-3000 ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
             alt="Decorative Pattern"
+            style={{
+              transition: "opacity 3s ease-in-out"
+            }}
           />
         </div>
 
