@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import RotatedMenu from "./RotatedMenu";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -99,8 +100,8 @@ const MainContent: React.FC<MainContentProps> = ({
           className="relative flex justify-center items-center overflow-hidden mx-auto"
           style={{
             clipPath: loadingStage >= 1 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
-            transition: 'clip-path 3s ease-in-out',
-            transform: 'translateX(-30%)' // Cambiado de -6% a -30%
+            transition: 'clip-path 4s ease-in-out',
+            transform: 'translateX(0)' // Removed the translateX offset to center image properly
           }}
         >
           <img
@@ -108,7 +109,7 @@ const MainContent: React.FC<MainContentProps> = ({
             className={`w-[40vw] max-w-[800px] min-w-[300px] h-auto transition-opacity duration-3000 ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
             alt="Decorative Pattern"
             style={{
-              transition: "opacity 3s ease-in-out"
+              transition: "opacity 4s ease-in-out"
             }}
           />
         </div>
