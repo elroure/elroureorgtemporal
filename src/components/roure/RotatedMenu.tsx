@@ -35,14 +35,15 @@ const RotatedMenu: React.FC<RotatedMenuProps> = ({
             transform: isVisible 
               ? `${!isMobile && isOnRight ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(0)` 
               : `${!isMobile && isOnRight ? 'rotate(-15deg)' : 'rotate(0deg)'} translateX(-50px)`,
-            transitionDelay: `${index * 0.5}s`,
+            transitionDelay: `${index * 0.1}s`,
             clipPath: isVisible
               ? "circle(150% at 50% 50%)"
               : "circle(0% at 50% 50%)",
             transition:
               "clip-path 1s ease-in-out, opacity 1s ease-in-out, transform 1s ease-in-out, backdrop-filter 1s ease-out",
             backdropFilter: loadingStage && !isVisible ? "blur(10px)" : "blur(0px)",
-            textDecoration: "none"
+            textDecoration: "none",
+            marginBottom: "1.5rem" // Consistent spacing between menu items
           }}
         >
           {item.text}
