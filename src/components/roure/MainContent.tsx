@@ -101,11 +101,11 @@ const MainContent: React.FC<MainContentProps> = ({
           style={{
             clipPath: loadingStage >= 1 ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
             transition: 'clip-path 3s ease-in-out',
-            transform: 'translateX(-6%)' // Updated from -3% to -6%
+            transform: 'translateX(-30%)' // Cambiado de -6% a -30%
           }}
         >
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/7d793843044aaa109d1d24be12b99cf118583ded"
+            src="/lovable-uploads/a2a0306c-1588-4029-bd68-eadc52824cbe.png"
             className={`w-[40vw] max-w-[800px] min-w-[300px] h-auto transition-opacity duration-3000 ${loadingStage >= 1 ? 'opacity-100' : 'opacity-0'}`}
             alt="Decorative Pattern"
           />
