@@ -7,7 +7,7 @@ const menuItems = [
   { text: "Historia", href: "/historia" },
   { text: "Fundamentos", href: "/pedagogia" },
   { text: "Escuela", href: "/escuela" },
-  { text: "Formaciones y Asesoramientos", href: "/formaciones" },
+  { text: "Otros servicios", href: "/formaciones" },
   { text: "Textos y Videos", href: "/textos-y-videos" },
 ];
 
