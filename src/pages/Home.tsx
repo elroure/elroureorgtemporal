@@ -8,12 +8,11 @@ const Home: React.FC = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const skipAnimations = params.get("skipAnimations") === "1";
-  const menuOpen = params.get("menu") === "open";
 
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center bg-[#DAD3C5] mx-auto p-5 max-md:max-w-[991px] max-sm:max-w-screen-sm font-handscript">
       <Logo className="mt-10" animationDelay={skipAnimations ? 0 : 2000} />
-      <MainContent skipAnimations={skipAnimations} forceMenuOpen={menuOpen} />
+      <MainContent skipAnimations={skipAnimations} />
     </main>
   );
 };
