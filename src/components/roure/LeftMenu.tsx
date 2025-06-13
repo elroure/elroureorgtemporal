@@ -13,16 +13,16 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
     { text: "Escuela", href: "/escuela" },
     { text: "Formaciones", href: "/formaciones" },
     { text: "Asesoramientos", href: "/asesoramientos" },
-    { text: "Textos", href: "/textos" },
     { text: "Videos", href: "/videos" },
+    { text: "Textos", href: "/textos" },
   ];
 
   return (
-    <div className="flex flex-col justify-center z-20 absolute left-0 top-1/2 transform -translate-y-1/2">
+    <div className="flex flex-col justify-center z-20 absolute right-0 top-1/2 transform -translate-y-1/2">
       <nav 
         className={`transition-all duration-1000 ${loadingStage >= 4 ? 'opacity-100' : 'opacity-0'}`}
         style={{
-          transform: loadingStage >= 4 ? 'translateX(0)' : 'translateX(-50px)',
+          transform: loadingStage >= 4 ? 'translateX(0)' : 'translateX(50px)',
           transition: 'transform 1s ease-out, opacity 1s ease-out'
         }}
       >
