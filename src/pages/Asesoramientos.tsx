@@ -1,9 +1,19 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/components/roure/Logo";
 
 const Asesoramientos: React.FC = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setImageLoaded(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center bg-[#DAD3C5] mx-auto p-5 max-md:max-w-[991px] max-sm:max-w-screen-sm font-handscript">
       <Logo className="mt-10" animationDelay={0} />
@@ -20,11 +30,20 @@ const Asesoramientos: React.FC = () => {
           ← Volver
         </Link>
         
-        <div className="w-full max-w-[800px] mb-8">
+        <div 
+          className="w-full max-w-[800px] mb-8 overflow-hidden"
+          style={{
+            clipPath: imageLoaded ? 'circle(150% at 50% 50%)' : 'circle(0% at 50% 50%)',
+            transition: 'clip-path 4s ease-in-out'
+          }}
+        >
           <img
             src="/lovable-uploads/a2a0306c-1588-4029-bd68-eadc52824cbe.png"
-            className="w-full h-auto rounded-lg"
+            className={`w-full h-auto rounded-lg transition-opacity duration-3000 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             alt="Asesoramientos"
+            style={{
+              transition: "opacity 4s ease-in-out"
+            }}
           />
         </div>
         

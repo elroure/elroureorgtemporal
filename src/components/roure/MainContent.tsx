@@ -124,9 +124,10 @@ const MainContent: React.FC<MainContentProps> = ({
                 <li key={item.text}>
                   <a
                     href={item.href}
-                    className="font-handscript text-[#43362A] text-lg sm:text-xl hover:text-opacity-80 transition-all duration-300 block text-center"
+                    className={`font-handscript text-[#43362A] text-lg sm:text-xl hover:text-opacity-80 transition-all duration-300 block text-center ${loadingStage >= 4 ? 'animate-pulse' : ''}`}
                     style={{
-                      textDecoration: 'none'
+                      textDecoration: 'none',
+                      animationDelay: loadingStage >= 4 ? `${index * 0.2 + 2}s` : '0s'
                     }}
                   >
                     {item.text}

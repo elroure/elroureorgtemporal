@@ -39,9 +39,10 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
             <li key={item.text}>
               <Link
                 to={item.href}
-                className="font-handscript text-[#43362A] text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 transition-all duration-300 block"
+                className={`font-handscript text-[#43362A] text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 transition-all duration-300 block ${loadingStage >= 4 ? 'animate-pulse' : ''}`}
                 style={{
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  animationDelay: loadingStage >= 4 ? `${index * 0.2 + 2}s` : '0s'
                 }}
               >
                 {item.text}
