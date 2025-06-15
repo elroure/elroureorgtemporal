@@ -1,11 +1,10 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 218 71% 83%; /* Changed to match #DAD3C5 */
+    --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -98,6 +97,5 @@
 
   body {
     @apply bg-background text-foreground;
-    background-color: #DAD3C5; /* Explicit background color to match pages */
   }
 }
