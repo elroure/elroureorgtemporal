@@ -101,7 +101,7 @@ const MainContent: React.FC<MainContentProps> = ({
         )}
       </div>
       
-      {/* Menu for mobile - centered below content */}
+      {/* Menu for mobile - centered single column */}
       {isMobile && (
         <div className="mt-8 w-full flex justify-center">
           <nav 
@@ -111,7 +111,7 @@ const MainContent: React.FC<MainContentProps> = ({
               transition: 'transform 1s ease-out, opacity 1s ease-out'
             }}
           >
-            <ul className="grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:justify-center sm:gap-6">
+            <ul className="flex flex-col items-center gap-4">
               {[
                 { text: "Historia", href: "/historia" },
                 { text: "Fundamentos", href: "/fundamentos" },
