@@ -6,7 +6,7 @@ import Logo from "@/components/roure/Logo";
 const Asesoramientos: React.FC = () => {
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center bg-[#DAD3C5] mx-auto p-5 max-md:max-w-[991px] max-sm:max-w-screen-sm font-handscript">
-      <Logo className="mt-10" />
+      <Logo className="mt-10" animationDelay={0} />
       
       <section className="flex flex-col items-center w-full max-w-[90vw] 2xl:max-w-[1200px] mt-10">
         <Link 
