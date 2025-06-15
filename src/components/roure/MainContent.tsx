@@ -127,7 +127,8 @@ const MainContent: React.FC<MainContentProps> = ({
                     className={`font-handscript text-[#43362A] text-lg sm:text-xl hover:text-opacity-80 transition-all duration-300 block text-center ${loadingStage >= 4 ? 'animate-pulse' : ''}`}
                     style={{
                       textDecoration: 'none',
-                      animationDelay: loadingStage >= 4 ? `${index * 0.2 + 2}s` : '0s'
+                      animationDelay: loadingStage >= 4 ? '2s' : '0s',
+                      animationDuration: '4s'
                     }}
                   >
                     {item.text}
