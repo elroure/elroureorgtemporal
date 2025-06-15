@@ -9,16 +9,16 @@ const Fundamentos: React.FC = () => {
       <Logo className="mt-10" animationDelay={0} />
       
       <section className="flex flex-col items-center w-full max-w-[90vw] 2xl:max-w-[1200px] mt-10">
-        <Link 
-          to="/home" 
-          className="self-start mb-8 font-handscript text-[#43362A] text-xl hover:text-opacity-80 transition-all duration-300"
-        >
-          ← Volver
-        </Link>
-        
         <h1 className="font-handscript text-[#43362A] text-4xl xl:text-5xl 2xl:text-6xl mb-8 text-center">
           Fundamentos
         </h1>
+        
+        <Link 
+          to="/home" 
+          className="mb-8 font-handscript text-[#43362A] text-xl hover:text-opacity-80 transition-all duration-300"
+        >
+          ← Volver
+        </Link>
         
         <div className="w-full max-w-[800px] mb-8">
           <img
