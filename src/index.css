@@ -96,8 +96,17 @@
     @apply border-border;
   }
 
+  html {
+    background-color: #DAD3C5; /* Set the root background to prevent white flashes */
+  }
+
   body {
     @apply bg-background text-foreground;
     background-color: #DAD3C5; /* Explicit background color to match pages */
+  }
+
+  #root {
+    background-color: #DAD3C5; /* Ensure the root element has the right background */
+    min-height: 100vh;
   }
 }

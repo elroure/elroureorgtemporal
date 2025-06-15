@@ -5,13 +5,21 @@ import Logo from "@/components/roure/Logo";
 
 const Historia: React.FC = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [contentLoaded, setContentLoaded] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const imageTimer = setTimeout(() => {
       setImageLoaded(true);
     }, 100);
 
-    return () => clearTimeout(timer);
+    const contentTimer = setTimeout(() => {
+      setContentLoaded(true);
+    }, 300);
+
+    return () => {
+      clearTimeout(imageTimer);
+      clearTimeout(contentTimer);
+    };
   }, []);
 
   return (
@@ -19,13 +27,16 @@ const Historia: React.FC = () => {
       <Logo className="mt-10" animationDelay={0} />
       
       <section className="flex flex-col items-center w-full max-w-[90vw] 2xl:max-w-[1200px] mt-10">
-        <h1 className="font-handscript text-[#43362A] text-4xl xl:text-5xl 2xl:text-6xl mb-8 text-center">
+        <h1 
+          className={`font-handscript text-[#43362A] text-4xl xl:text-5xl 2xl:text-6xl mb-8 text-center transition-all duration-800 ${contentLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        >
           Historia
         </h1>
         
         <Link 
           to="/home" 
-          className="mb-8 font-handscript text-[#43362A] text-xl hover:text-opacity-80 transition-all duration-300"
+          className={`mb-8 font-handscript text-[#43362A] text-xl hover:text-opacity-80 transition-all duration-800 ${contentLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{ transitionDelay: '100ms' }}
         >
           ← Volver
         </Link>
@@ -48,10 +59,16 @@ const Historia: React.FC = () => {
         </div>
         
         <div className="w-full max-w-[800px]">
-          <p className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl leading-relaxed text-center mb-6">
+          <p 
+            className={`font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl leading-relaxed text-center mb-6 transition-all duration-800 ${contentLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '200ms' }}
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
-          <p className="font-handscript text-[#43362A] text-lg xl:text-xl 2xl:text-2xl leading-relaxed text-center">
+          <p 
+            className={`font-handscript text-[#43362A] text-lg xl:text-xl 2xl:text-2xl leading-relaxed text-center transition-all duration-800 ${contentLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{ transitionDelay: '300ms' }}
+          >
             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
