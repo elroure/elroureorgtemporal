@@ -4,15 +4,9 @@ import { Link } from "react-router-dom";
 
 type LeftMenuProps = {
   loadingStage: number;
-  playAnimation?: boolean;
-  startMenu?: boolean;
 };
 
-const LeftMenu: React.FC<LeftMenuProps> = ({
-  loadingStage,
-  playAnimation,
-  startMenu,
-}) => {
+const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
   const menuItems = [
     { text: "Historia", href: "/historia" },
     { text: "Fundamentos", href: "/fundamentos" },
@@ -28,26 +22,13 @@ const LeftMenu: React.FC<LeftMenuProps> = ({
       style={{ right: '15%', maxWidth: '400px' }}>
       <nav>
         <ul className="space-y-6">
-          {menuItems.map((item, index) => {
-            let className = "font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 transition-all duration-[2000ms] block";
-            let style: React.CSSProperties = { textDecoration: 'none' };
-            
-            if (playAnimation) {
-              className += startMenu ? " opacity-80" : " opacity-0";
-              // Staggered delay for each menu item
-              if (startMenu) {
-                style.transitionDelay = `${index * 400}ms`;
-              }
-            } else {
-              className += " opacity-100";
-            }
-            
+          {menuItems.map((item) => {
             return (
               <li key={item.text}>
                 <Link
                   to={item.href}
-                  className={className}
-                  style={style}
+                  className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 opacity-100 block"
+                  style={{ textDecoration: 'none' }}
                 >
                   {item.text}
                 </Link>

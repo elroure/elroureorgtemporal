@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 
 interface LogoProps {
   className?: string;
-  animationDelay?: number;
-  animateFade?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ className, animateFade }) => {
+const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
     <div className={`flex flex-col items-center ${className}`}>
       <Link to="/home">
@@ -18,12 +16,7 @@ const Logo: React.FC<LogoProps> = ({ className, animateFade }) => {
         >
           <img
             src="/lovable-uploads/517a4352-7aae-4e38-a7f8-23577996fbf6.png"
-            className={`w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto transition-opacity duration-[2000ms] ${
-              animateFade ? "opacity-80" : "opacity-100"
-            }`}
-            style={{
-              transitionDelay: animateFade ? "6600ms" : undefined,
-            }}
+            className={`w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto opacity-100`}
             alt="Roure Logo"
           />
         </div>

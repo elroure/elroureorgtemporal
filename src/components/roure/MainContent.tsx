@@ -1,54 +1,10 @@
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import LeftMenu from "./LeftMenu";
 
-type MainContentProps = {
-  playAnimation?: boolean;
-};
-
-const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
+const MainContent: React.FC = () => {
   const isMobile = useIsMobile();
-  const [showImg, setShowImg] = useState(!playAnimation);
-  const [showText, setShowText] = useState(!playAnimation);
-  const [showMenu, setShowMenu] = useState(!playAnimation);
-  const [showEmail, setShowEmail] = useState(!playAnimation);
-
-  useEffect(() => {
-    if (playAnimation) {
-      console.log("Starting MainContent animations");
-      
-      // Reset all states to hidden first
-      setShowImg(false);
-      setShowText(false);
-      setShowMenu(false);
-      setShowEmail(false);
-      
-      // 1. Center image appears first (circle reveal) - starts immediately
-      setTimeout(() => {
-        console.log("Showing image");
-        setShowImg(true);
-      }, 100);
-      
-      // 2. Left text appears after image animation (2s + 1s delay)
-      setTimeout(() => {
-        console.log("Showing text");
-        setShowText(true);
-      }, 3100);
-      
-      // 3. Menu items start appearing after text (3.1s + 1.5s + 500ms delay)
-      setTimeout(() => {
-        console.log("Showing menu");
-        setShowMenu(true);
-      }, 5100);
-      
-      // 4. Email appears last (after all menu items have animated)
-      setTimeout(() => {
-        console.log("Showing email");
-        setShowEmail(true);
-      }, 8100);
-    }
-  }, [playAnimation]);
 
   return (
     <section className="flex flex-col items-center relative w-full max-w-[90vw] 2xl:max-w-[1800px] mt-10">
@@ -57,39 +13,16 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
           <>
             <div className="flex flex-col justify-start z-20 absolute left-0 top-0 max-h-full" style={{ minWidth: '20%', maxWidth: '400px' }}>
               <div className="w-full mb-5">
-                <p 
-                  className={`font-handscript text-[#43362A] text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed p-4 rounded-[18px] transition-opacity duration-[2000ms] ${
-                    playAnimation
-                      ? showText ? "opacity-80" : "opacity-0"
-                      : "opacity-100"
-                  }`}
-                >
+                <p className="font-handscript text-[#43362A] text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed p-4 rounded-[18px] opacity-100">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
             </div>
-            <LeftMenu
-              loadingStage={4}
-              playAnimation={playAnimation}
-              startMenu={showMenu}
-            />
+            <LeftMenu loadingStage={4} />
           </>
         )}
         
-        <div
-          className={`relative flex justify-center items-center overflow-hidden mx-auto transition-all duration-[2000ms] ${
-            playAnimation && !showImg ? "opacity-0" : "opacity-100"
-          }`}
-          style={{
-            clipPath: playAnimation
-              ? showImg
-                ? "circle(150% at 50% 50%)"
-                : "circle(0% at 50% 50%)"
-              : "circle(150% at 50% 50%)",
-            transform: 'translateX(0)',
-            transition: playAnimation && showImg ? "clip-path 2s ease-out" : undefined,
-          }}
-        >
+        <div className="relative flex justify-center items-center mx-auto opacity-100">
           <img
             src="/lovable-uploads/a2a0306c-1588-4029-bd68-eadc52824cbe.png"
             className="w-[40vw] max-w-[800px] min-w-[300px] h-auto"
@@ -99,13 +32,7 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
 
         {isMobile && (
           <div className="w-[90%] mt-8">
-            <p 
-              className={`font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] transition-opacity duration-[2000ms] ${
-                playAnimation
-                  ? showText ? "opacity-80" : "opacity-0"
-                  : "opacity-100"
-              }`}
-            >
+            <p className="font-handscript text-[#43362A] text-xl sm:text-2xl leading-relaxed text-center p-4 rounded-[18px] opacity-100">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
@@ -114,14 +41,8 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
       
       <a
         href="mailto:experienciaelroure@gmail.com"
-        className={`font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl hover:text-opacity-80 mt-10 transition-opacity duration-[2000ms] ${
-          playAnimation
-            ? showEmail ? "opacity-80" : "opacity-0"
-            : "opacity-100"
-        }`}
-        style={{
-          textDecoration: 'none'
-        }}
+        className="font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl hover:text-opacity-80 mt-10 opacity-100"
+        style={{ textDecoration: 'none' }}
       >
         experienciaelroure@gmail.com
       </a>
