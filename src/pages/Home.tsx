@@ -9,8 +9,9 @@ const Home: React.FC = () => {
   const [playAnimation, setPlayAnimation] = useState(false);
 
   useEffect(() => {
-    // Checks for first load after landing
-    if (!localStorage.getItem(ANIMATION_LOCAL_KEY)) {
+    // Check if this is the first load after landing
+    const hasAnimated = localStorage.getItem(ANIMATION_LOCAL_KEY);
+    if (!hasAnimated) {
       localStorage.setItem(ANIMATION_LOCAL_KEY, "true");
       setPlayAnimation(true);
     }

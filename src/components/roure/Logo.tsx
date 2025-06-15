@@ -24,7 +24,7 @@ const Logo: React.FC<LogoProps> = ({ className, animateFade }) => {
                 : ""
             }`}
             style={{
-              animationDelay: animateFade ? "2.9s" : undefined,
+              animationDelay: animateFade ? "5.5s" : undefined,
               opacity: animateFade ? 0 : 1,
             }}
             alt="Roure Logo"

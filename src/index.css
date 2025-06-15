@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -110,14 +111,21 @@
     opacity: 1;
   }
 }
-.circle-reveal {
-  animation: circle-reveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-.fade-in-80 {
-  animation: fade-in-80 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  opacity: 0;
-}
+
 @keyframes fade-in-80 {
-  0% { opacity: 0; }
-  100% { opacity: 0.8; }
+  0% { 
+    opacity: 0; 
+  }
+  100% { 
+    opacity: 0.8; 
+  }
+}
+
+.circle-reveal {
+  animation: circle-reveal 2s ease-out forwards;
+}
+
+.fade-in-80 {
+  animation: fade-in-80 1.5s ease-out forwards;
+  opacity: 0;
 }

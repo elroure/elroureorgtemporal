@@ -14,13 +14,19 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
   const [showMenu, setShowMenu] = useState(!playAnimation);
   const [showEmail, setShowEmail] = useState(!playAnimation);
 
-  // Only animate on first load if playAnimation true
   useEffect(() => {
     if (playAnimation) {
-      setTimeout(() => setShowImg(true), 50);     // 1. appear image (circle)
-      setTimeout(() => setShowText(true), 1550);  // 2. text
-      setTimeout(() => setShowMenu(true), 2550);  // 3. menu
-      setTimeout(() => setShowEmail(true), 3350); // 5. email (logo is handled in Logo.tsx)
+      // 1. Center image appears first (circle reveal) - starts immediately
+      setTimeout(() => setShowImg(true), 100);
+      
+      // 2. Left text appears after image animation (2s + 500ms delay)
+      setTimeout(() => setShowText(true), 2600);
+      
+      // 3. Menu items start appearing after text (2.6s + 1.5s + 300ms delay)
+      setTimeout(() => setShowMenu(true), 4400);
+      
+      // 4. Email appears last (after all menu items have animated)
+      setTimeout(() => setShowEmail(true), 6500);
     }
   }, [playAnimation]);
 
@@ -38,8 +44,7 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
                       : ""
                   }`}
                   style={{
-                    animationDelay: playAnimation ? "1.6s" : undefined,
-                    opacity: playAnimation && !showText ? 0 : undefined,
+                    opacity: playAnimation && !showText ? 0 : playAnimation ? undefined : 1,
                   }}
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -67,7 +72,7 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
             transform: 'translateX(0)',
             animation:
               playAnimation && showImg
-                ? "circle-reveal 1.5s cubic-bezier(0.4,0,0.2,1) forwards"
+                ? "circle-reveal 2s ease-out forwards"
                 : undefined,
             opacity: playAnimation && !showImg ? 0 : 1,
           }}
@@ -88,8 +93,7 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
                   : ""
               }`}
               style={{
-                animationDelay: playAnimation ? "1.6s" : undefined,
-                opacity: playAnimation && !showText ? 0 : undefined,
+                opacity: playAnimation && !showText ? 0 : playAnimation ? undefined : 1,
               }}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -106,8 +110,7 @@ const MainContent: React.FC<MainContentProps> = ({ playAnimation }) => {
             : ""
         }`}
         style={{
-          animationDelay: playAnimation ? "3.7s" : undefined,
-          opacity: playAnimation && !showEmail ? 0 : undefined,
+          opacity: playAnimation && !showEmail ? 0 : playAnimation ? undefined : 1,
           textDecoration: 'none'
         }}
       >

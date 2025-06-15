@@ -33,7 +33,8 @@ const LeftMenu: React.FC<LeftMenuProps> = ({
             let style: React.CSSProperties = {};
             if (playAnimation) {
               fadeClass = startMenu ? "fade-in-80" : "opacity-0";
-              style.animationDelay = `${2.0 + index * 0.17}s`;
+              // Staggered delay: base delay of 4.4s + 300ms per item
+              style.animationDelay = `${4.4 + index * 0.3}s`;
               if (!startMenu) style.opacity = 0;
             }
             return (
