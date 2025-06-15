@@ -18,7 +18,7 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
   ];
 
   return (
-    <div className="flex flex-col justify-center z-20 absolute right-0 top-1/2 transform -translate-y-1/2"
+    <div className="flex flex-col justify-center z-20 absolute right-0 top-1/2 transform -translate-y-1/2 animate-in fade-in slide-in-from-right-8 duration-1000 delay-500"
       style={{ right: '15%', maxWidth: '400px' }}>
       <nav>
         <ul className="space-y-6">
@@ -27,7 +27,7 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
               <li key={item.text}>
                 <Link
                   to={item.href}
-                  className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 opacity-100 block"
+                  className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 block"
                   style={{ textDecoration: 'none' }}
                 >
                   {item.text}
