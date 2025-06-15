@@ -21,7 +21,7 @@ const Index: React.FC = () => {
 
   return (
     <main className="max-w-none min-h-screen flex flex-col items-center justify-center bg-[#DAD3C5] mx-auto p-5">
-      <Logo className="mb-10" animationDelay={0} />
+      <Logo className="mb-10" />
       
       <button
         onClick={handleEnter}
