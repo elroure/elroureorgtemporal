@@ -13,7 +13,7 @@ const MainContent: React.FC = () => {
           <>
             <div className="flex flex-col justify-start z-20 absolute left-0 top-0 max-h-full" style={{ minWidth: '20%', maxWidth: '400px' }}>
               <div className="w-full mb-5">
-                <p className="font-handscript text-[#43362A] text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed p-4 rounded-[18px] opacity-0 animate-fade-in-80 delay-[1000ms]">
+                <p className="font-handscript text-[#43362A] text-2xl xl:text-3xl 2xl:text-4xl leading-relaxed p-4 rounded-[18px] opacity-0 animate-fade-in-80 delay-[3000ms]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
               </div>
@@ -43,7 +43,7 @@ const MainContent: React.FC = () => {
       
       <a
         href="mailto:experienciaelroure@gmail.com"
-        className="font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl hover:text-opacity-80 mt-10 opacity-0 animate-fade-in-80 md:delay-[5500ms] delay-[3500ms]"
+        className="font-handscript text-[#43362A] text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl hover:text-opacity-80 mt-10 opacity-0 animate-fade-in-80 delay-[12000ms]"
         style={{ textDecoration: 'none' }}
       >
         experienciaelroure@gmail.com

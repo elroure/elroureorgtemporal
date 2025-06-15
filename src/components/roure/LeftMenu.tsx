@@ -24,7 +24,7 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
         <ul className="space-y-6">
           {menuItems.map((item, index) => {
             return (
-              <li key={item.text} className={`opacity-0 animate-fade-in-80 delay-[${2000 + index * 200}ms]`}>
+              <li key={item.text} className={`opacity-0 animate-fade-in-80 delay-[${5000 + index * 500}ms]`}>
                 <Link
                   to={item.href}
                   className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 block"

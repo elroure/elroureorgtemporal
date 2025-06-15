@@ -8,7 +8,7 @@ interface LogoProps {
 
 const Logo: React.FC<LogoProps> = ({ className }) => {
   return (
-    <div className={`flex flex-col items-center ${className} opacity-0 animate-fade-in-80 md:delay-[4500ms] delay-[2500ms]`}>
+    <div className={`flex flex-col items-center ${className} opacity-0 animate-fade-in-80 delay-[10000ms]`}>
       <Link to="/home">
         <div
           className={`overflow-hidden`}

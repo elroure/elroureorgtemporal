@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -100,8 +101,8 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'slide-in': 'slide-in 0.5s ease-out forwards',
-        'circle-reveal': 'circle-reveal 1.5s ease-out forwards',
-        'fade-in-80': 'fade-in-80 1.5s ease-out forwards',
+        'circle-reveal': 'circle-reveal 3s ease-out forwards',
+        'fade-in-80': 'fade-in-80 2s ease-out forwards',
 			}
 		}
 	},
