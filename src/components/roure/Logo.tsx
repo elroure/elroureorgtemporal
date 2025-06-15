@@ -1,21 +1,32 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface LogoProps {
   className?: string;
   animationDelay?: number;
+  animateFade?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ className }) => {
-  // Remove animation logic: logo should just display
+const Logo: React.FC<LogoProps> = ({ className, animateFade }) => {
   return (
     <div className={`flex flex-col items-center ${className}`}>
       <Link to="/home">
-        <div className="overflow-hidden" style={{ transform: "translateX(-5%)", cursor: "pointer" }}>
+        <div
+          className={`overflow-hidden`}
+          style={{ transform: "translateX(-5%)", cursor: "pointer" }}
+        >
           <img
             src="/lovable-uploads/517a4352-7aae-4e38-a7f8-23577996fbf6.png"
-            className="w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto"
+            className={`w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto ${
+              animateFade
+                ? "fade-in-80"
+                : ""
+            }`}
+            style={{
+              animationDelay: animateFade ? "2.9s" : undefined,
+              opacity: animateFade ? 0 : 1,
+            }}
             alt="Roure Logo"
           />
         </div>

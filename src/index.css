@@ -99,3 +99,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes circle-reveal {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+  }
+}
+.circle-reveal {
+  animation: circle-reveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.fade-in-80 {
+  animation: fade-in-80 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+@keyframes fade-in-80 {
+  0% { opacity: 0; }
+  100% { opacity: 0.8; }
+}
