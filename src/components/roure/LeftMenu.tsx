@@ -18,13 +18,13 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
   ];
 
   return (
-    <div className="flex flex-col justify-center z-20 absolute right-0 top-1/2 transform -translate-y-1/2 animate-in fade-in slide-in-from-right-8 duration-1000 delay-500"
+    <div className="flex flex-col justify-center z-20 absolute right-0 top-1/2 transform -translate-y-1/2"
       style={{ right: '15%', maxWidth: '400px' }}>
       <nav>
         <ul className="space-y-6">
-          {menuItems.map((item) => {
+          {menuItems.map((item, index) => {
             return (
-              <li key={item.text}>
+              <li key={item.text} className={`opacity-0 animate-fade-in-80 delay-[${2000 + index * 200}ms]`}>
                 <Link
                   to={item.href}
                   className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 block"
