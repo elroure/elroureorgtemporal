@@ -11,9 +11,14 @@ const Home: React.FC = () => {
   useEffect(() => {
     // Check if this is the first load after landing
     const hasAnimated = localStorage.getItem(ANIMATION_LOCAL_KEY);
+    console.log("Has animated before:", hasAnimated);
+    
     if (!hasAnimated) {
+      console.log("Starting first-time animations");
       localStorage.setItem(ANIMATION_LOCAL_KEY, "true");
       setPlayAnimation(true);
+    } else {
+      console.log("Skipping animations - already shown");
     }
   }, []);
 

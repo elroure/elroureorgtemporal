@@ -18,14 +18,11 @@ const Logo: React.FC<LogoProps> = ({ className, animateFade }) => {
         >
           <img
             src="/lovable-uploads/517a4352-7aae-4e38-a7f8-23577996fbf6.png"
-            className={`w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto ${
-              animateFade
-                ? "fade-in-80"
-                : ""
+            className={`w-[400px] h-auto max-sm:w-[300px] max-sm:h-auto transition-opacity duration-[2000ms] ${
+              animateFade ? "opacity-80" : "opacity-100"
             }`}
             style={{
-              animationDelay: animateFade ? "5.5s" : undefined,
-              opacity: animateFade ? 0 : 1,
+              transitionDelay: animateFade ? "6600ms" : undefined,
             }}
             alt="Roure Logo"
           />
