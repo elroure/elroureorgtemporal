@@ -33,7 +33,9 @@ const LeftMenu: React.FC<LeftMenuProps> = ({ loadingStage }) => {
                 to={item.href}
                 className="font-handscript text-[#43362A] text-xl xl:text-2xl 2xl:text-3xl hover:text-opacity-80 transition-all duration-300 block"
                 style={{
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  opacity: loadingStage >= 4 ? '0' : '0',
+                  animation: loadingStage >= 4 ? `fadeInStagger 0.8s ease-out ${index * 0.3}s forwards` : 'none'
                 }}
               >
                 {item.text}
