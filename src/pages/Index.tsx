@@ -8,10 +8,10 @@ const Index: React.FC = () => {
       <Logo className="mb-10" animationDelay={0} />
       
       <div className="text-center mt-10">
-        <p className="font-handscript text-[#43362A] text-2xl mb-4">
+        <p className="font-montserrat text-[#43362A] text-2xl mb-4">
           Nueva web en construcción...
         </p>
-        <p className="font-handscript text-[#43362A] text-xl">
+        <p className="font-montserrat text-[#43362A] text-xl">
           contacto: info@elroure.org
         </p>
       </div>

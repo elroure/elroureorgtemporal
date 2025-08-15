@@ -21,6 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'handscript': ['Satisfy', 'cursive'],
+				'montserrat': ['Montserrat', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
